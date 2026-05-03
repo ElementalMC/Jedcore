@@ -165,7 +165,7 @@ public class AirPunch extends AirAbility implements AddonAbility {
 	}
 
 	private void applyShotEffects(Location location) {
-		getAirbendingParticles().display(location, 2, Math.random() / 5, Math.random() / 5, Math.random() / 5, 0.0);
+		playAirbendingParticles(location, 2,  Math.random() / 5, Math.random() / 5, Math.random() / 5);
 		playAirbendingSound(location);
 	}
 

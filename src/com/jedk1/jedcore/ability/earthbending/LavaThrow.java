@@ -11,7 +11,7 @@ import com.projectkorra.projectkorra.attribute.Attribute;
 import com.projectkorra.projectkorra.command.Commands;
 import com.projectkorra.projectkorra.region.RegionProtection;
 import com.projectkorra.projectkorra.util.DamageHandler;
-import com.projectkorra.projectkorra.util.ParticleEffect;
+
 import com.projectkorra.projectkorra.util.TempBlock;
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
@@ -201,7 +201,7 @@ public class LavaThrow extends LavaAbility implements AddonAbility {
 			head = head.add(newDirection.multiply(1));
 
 			new RegenTempBlock(l.getBlock(), Material.LAVA, Material.LAVA.createBlockData(bd -> ((Levelled)bd).setLevel(0)), 200);
-			ParticleEffect.LAVA.display(head, 1, Math.random(), Math.random(), Math.random(), 0);
+			head.getWorld().spawnParticle(Particle.LAVA, head, 1, Math.random(), Math.random(), Math.random(), 0);
 
 			boolean hit = false;
 

@@ -10,9 +10,11 @@ import com.projectkorra.projectkorra.ability.AvatarAbility;
 import com.projectkorra.projectkorra.attribute.Attribute;
 import com.projectkorra.projectkorra.region.RegionProtection;
 import com.projectkorra.projectkorra.util.DamageHandler;
-import com.projectkorra.projectkorra.util.ParticleEffect;
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -126,10 +128,10 @@ public class SpiritBeam extends AvatarAbility implements AddonAbility {
 		String purple = "#A020F0";
 		JCMethods.displayColoredParticles(purple, location, 1, 0f, 0f, 0f, 0f);
 		JCMethods.displayColoredParticles(purple, location, 1, (float) Math.random() / 3, (float) Math.random() / 3, (float) Math.random() / 3, 0f);
-
 		float randomOffset = (float) Math.random() / 3;
-		ParticleEffect.BLOCK_CRACK.display(location, 1, randomOffset, randomOffset, randomOffset, 0.1F, Material.NETHER_PORTAL.createBlockData());
-		ParticleEffect.BLOCK_CRACK.display(location, 1, (float) direction.getX(), (float) direction.getY(), (float) direction.getZ(), 0.1F, Material.NETHER_PORTAL.createBlockData());
+		BlockData blockData = Material.NETHER_PORTAL.createBlockData();
+		location.getWorld().spawnParticle(Particle.BLOCK_CRACK, location, 1, randomOffset, randomOffset, randomOffset, 0.1F, blockData);
+		location.getWorld().spawnParticle(Particle.BLOCK_CRACK, location, 1, (float) direction.getX(), (float) direction.getY(), (float) direction.getZ(), 0.1F, blockData);
 	}
 
 	private void damageNearbyEntities(Location location) {

@@ -12,8 +12,9 @@ import com.projectkorra.projectkorra.ability.FireAbility;
 import com.projectkorra.projectkorra.attribute.Attribute;
 import com.projectkorra.projectkorra.firebending.util.FireDamageTimer;
 import com.projectkorra.projectkorra.util.DamageHandler;
-import com.projectkorra.projectkorra.util.ParticleEffect;
+
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -75,7 +76,7 @@ public class FirePunch extends FireAbility implements AddonAbility {
 		Location hand = getRightHandPos().toVector().add(player.getEyeLocation().getDirection().clone().multiply(.75D)).toLocation(player.getWorld());
 
 		playFirebendingParticles(hand, 3, 0, 0, 0);
-		ParticleEffect.SMOKE_NORMAL.display(hand, 1);
+		hand.getWorld().spawnParticle(Particle.SMOKE_NORMAL, hand, 1);
 		JCMethods.emitLight(hand);
 	}
 

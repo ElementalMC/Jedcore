@@ -12,7 +12,7 @@ import com.projectkorra.projectkorra.attribute.Attribute;
 import com.projectkorra.projectkorra.command.Commands;
 import com.projectkorra.projectkorra.region.RegionProtection;
 import com.projectkorra.projectkorra.util.DamageHandler;
-import com.projectkorra.projectkorra.util.ParticleEffect;
+
 import com.projectkorra.projectkorra.util.TempFallingBlock;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -103,30 +103,30 @@ public class ESEarth extends AvatarAbility implements AddonAbility {
 	}
 
 	// Unused
-	public static void explodeEarth(TempFallingBlock tempfallingblock) {
-		FallingBlock fb = tempfallingblock.getFallingBlock();
-		ESEarth es = (ESEarth) tempfallingblock.getAbility();
-		Player player = es.getPlayer();
-
-		ParticleEffect.SMOKE_LARGE.display(fb.getLocation(), 0, 0, 0, 0.3F, 25);
-		fb.getWorld().playSound(fb.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 2f, 0.5f);
-
-		ThreadLocalRandom rand = ThreadLocalRandom.current();
-
-		for (Location l : GeneralMethods.getCircle(fb.getLocation(), es.impactSize, 1, false, true, 0)) {
-			if (isBreakable(l.getBlock()) && !RegionProtection.isRegionProtected(player, l, "ElementSphere") && EarthAbility.isEarthbendable(player, l.getBlock())) {
-				ParticleEffect.SMOKE_LARGE.display(l, 0, 0, 0, 0.1F, 2);
-				new RegenTempBlock(l.getBlock(), Material.AIR, Material.AIR.createBlockData(), rand.nextInt((int) es.revertDelay - (int) (es.revertDelay - 1000)) + (es.revertDelay - 1000), false);
-			}
-
-			if (GeneralMethods.isSolid(l.getBlock().getRelative(BlockFace.DOWN)) && isBreakable(l.getBlock()) && ElementalAbility.isAir(l.getBlock().getType()) && rand.nextInt(20) == 0 && EarthAbility.isEarthbendable(player, l.getBlock().getRelative(BlockFace.DOWN))) {
-				Material type = l.getBlock().getRelative(BlockFace.DOWN).getType();
-				new RegenTempBlock(l.getBlock(), type, type.createBlockData(), rand.nextInt((int) es.revertDelay - (int) (es.revertDelay - 1000)) + (es.revertDelay - 1000));
-			}
-		}
-
-		tempfallingblock.remove();
-	}
+//	public static void explodeEarth(TempFallingBlock tempfallingblock) {
+//		FallingBlock fb = tempfallingblock.getFallingBlock();
+//		ESEarth es = (ESEarth) tempfallingblock.getAbility();
+//		Player player = es.getPlayer();
+//
+//		ParticleEffect.SMOKE_LARGE.display(fb.getLocation(), 0, 0, 0, 0.3F, 25);
+//		fb.getWorld().playSound(fb.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 2f, 0.5f);
+//
+//		ThreadLocalRandom rand = ThreadLocalRandom.current();
+//
+//		for (Location l : GeneralMethods.getCircle(fb.getLocation(), es.impactSize, 1, false, true, 0)) {
+//			if (isBreakable(l.getBlock()) && !RegionProtection.isRegionProtected(player, l, "ElementSphere") && EarthAbility.isEarthbendable(player, l.getBlock())) {
+//				ParticleEffect.SMOKE_LARGE.display(l, 0, 0, 0, 0.1F, 2);
+//				new RegenTempBlock(l.getBlock(), Material.AIR, Material.AIR.createBlockData(), rand.nextInt((int) es.revertDelay - (int) (es.revertDelay - 1000)) + (es.revertDelay - 1000), false);
+//			}
+//
+//			if (GeneralMethods.isSolid(l.getBlock().getRelative(BlockFace.DOWN)) && isBreakable(l.getBlock()) && ElementalAbility.isAir(l.getBlock().getType()) && rand.nextInt(20) == 0 && EarthAbility.isEarthbendable(player, l.getBlock().getRelative(BlockFace.DOWN))) {
+//				Material type = l.getBlock().getRelative(BlockFace.DOWN).getType();
+//				new RegenTempBlock(l.getBlock(), type, type.createBlockData(), rand.nextInt((int) es.revertDelay - (int) (es.revertDelay - 1000)) + (es.revertDelay - 1000));
+//			}
+//		}
+//
+//		tempfallingblock.remove();
+//	}
 
 	public static boolean isBreakable(Block block) {
 		return !Arrays.asList(unbreakables).contains(block.getType());

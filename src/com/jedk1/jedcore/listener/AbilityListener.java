@@ -64,10 +64,11 @@ import com.projectkorra.projectkorra.earthbending.Shockwave;
 import com.projectkorra.projectkorra.earthbending.lava.LavaFlow;
 import com.projectkorra.projectkorra.firebending.FireJet;
 import com.projectkorra.projectkorra.util.MovementHandler;
-import com.projectkorra.projectkorra.util.ParticleEffect;
 import com.projectkorra.projectkorra.waterbending.blood.Bloodbending;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
@@ -166,9 +167,9 @@ public class AbilityListener implements Listener {
 		if (fp != null && burnEnabled) {
 			var item = event.getItemDrop();
 			var loc = fp.getRightHandPos();
-			ParticleEffect.LAVA.display(loc, 5, 0.1, 0.1, 0.1, 0.05);
-			ParticleEffect.FLAME.display(loc, 3, 0.1, 0.1, 0.1, 0.01);
-			ParticleEffect.SMOKE_NORMAL.display(loc, 2, 0.05, 0.05, 0.05, 0.01);
+			loc.getWorld().spawnParticle(Particle.LAVA, loc, 5, 0.1, 0.1, 0.1, 0.05);
+			loc.getWorld().spawnParticle(Particle.FLAME, loc, 3, 0.1, 0.1, 0.1, 0.01);
+			loc.getWorld().spawnParticle(Particle.SMOKE_NORMAL, loc, 2, 0.05, 0.05, 0.05, 0.01);
 			loc.getWorld().playSound(loc, Sound.BLOCK_FIRE_EXTINGUISH, 0.3f, 1.4f);
 			item.remove();
 		}

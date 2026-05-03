@@ -13,11 +13,12 @@ import com.projectkorra.projectkorra.ability.util.Collision;
 import com.projectkorra.projectkorra.attribute.Attribute;
 import com.projectkorra.projectkorra.earthbending.passive.DensityShift;
 import com.projectkorra.projectkorra.util.DamageHandler;
-import com.projectkorra.projectkorra.util.ParticleEffect;
+
 import com.projectkorra.projectkorra.util.TempBlock;
 import com.projectkorra.projectkorra.util.TempFallingBlock;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -137,8 +138,13 @@ public class EarthShard extends EarthAbility implements AddonAbility {
 		if (isMetal(block)) {
 			playMetalbendingSound(block.getLocation());
 		} else {
-			ParticleEffect.BLOCK_CRACK.display(
-					block.getLocation().add(0, 1, 0), 20, 0.0, 0.0, 0.0, 0.0, block.getBlockData()
+			block.getLocation().add(0, 1, 0).getWorld().spawnParticle(
+					Particle.BLOCK_CRACK,
+					block.getLocation().add(0, 1, 0),
+					20,
+					0.0, 0.0, 0.0,
+					0.0,
+					block.getBlockData()
 			);
 			playEarthbendingSound(block.getLocation());
 		}
@@ -232,7 +238,7 @@ public class EarthShard extends EarthAbility implements AddonAbility {
 				CollisionDetector.checkEntityCollisions(player, collider, (e) -> {
 					DamageHandler.damageEntity(e, isMetal(fb.getBlockData().getMaterial()) ? metalDmg : normalDmg, this);
 					((LivingEntity) e).setNoDamageTicks(0);
-					ParticleEffect.BLOCK_CRACK.display(fb.getLocation(), 20, 0, 0, 0, 0, fb.getBlockData());
+					fb.getLocation().getWorld().spawnParticle(Particle.BLOCK_CRACK, fb.getLocation(), 20, 0, 0, 0, 0, fb.getBlockData());
 					tfb.remove();
 					return false;
 				});

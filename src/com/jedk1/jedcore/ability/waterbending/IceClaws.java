@@ -8,9 +8,9 @@ import com.projectkorra.projectkorra.ability.AddonAbility;
 import com.projectkorra.projectkorra.ability.IceAbility;
 import com.projectkorra.projectkorra.attribute.Attribute;
 import com.projectkorra.projectkorra.util.DamageHandler;
-import com.projectkorra.projectkorra.util.ParticleEffect;
 
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
@@ -145,7 +145,7 @@ public class IceClaws extends IceAbility implements AddonAbility {
 			if (!isTransparent(head.getBlock())) return false;
 			GeneralMethods.displayColoredParticle("66FFFF", head);
 			GeneralMethods.displayColoredParticle("CCFFFF", head);
-			ParticleEffect.SNOW_SHOVEL.display(head, 1, 0, 0, 0, 0);
+			head.getWorld().spawnParticle(Particle.SNOW_SHOVEL, head, 1, 0, 0, 0, 0);
 			for (Entity entity : GeneralMethods.getEntitiesAroundPoint(head, 1.5)) {
 				if (entity instanceof LivingEntity && entity.getEntityId() != player.getEntityId() && !(entity instanceof ArmorStand)) {
 					freezeEntity((LivingEntity) entity, false);
@@ -178,7 +178,7 @@ public class IceClaws extends IceAbility implements AddonAbility {
 
 	private void displayChargeUp() {
 		Location location = getRightHandPos().toVector().add(player.getEyeLocation().getDirection().clone().multiply(.75D)).toLocation(player.getWorld());
-		ParticleEffect.WATER_SPLASH.display(location, 1, Math.random()/3, Math.random()/3, Math.random()/3, 0.0);
+		location.getWorld().spawnParticle(Particle.WATER_SPLASH, location, 1, Math.random()/3, Math.random()/3, Math.random()/3, 0.0);
 	}
 
 	public static boolean freezeEntity(Player player, LivingEntity entity) {

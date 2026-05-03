@@ -15,9 +15,9 @@ import com.projectkorra.projectkorra.command.Commands;
 import com.projectkorra.projectkorra.firebending.BlazeArc;
 import com.projectkorra.projectkorra.region.RegionProtection;
 import com.projectkorra.projectkorra.util.DamageHandler;
-import com.projectkorra.projectkorra.util.ParticleEffect;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.ArmorStand;
@@ -148,9 +148,9 @@ public class ESFire extends AvatarAbility implements AddonAbility {
 	}
 
 	private void displayAttackParticles() {
-		ParticleEffect flame = bPlayer.hasSubElement(Element.BLUE_FIRE) ? ParticleEffect.SOUL_FIRE_FLAME : ParticleEffect.FLAME;
-		flame.display(location, 5, Math.random(), Math.random(), Math.random(), 0.02);
-		ParticleEffect.SMOKE_LARGE.display(location, 2, Math.random(), Math.random(), Math.random(), 0.01);
+		Particle fireParticle = bPlayer.hasSubElement(Element.BLUE_FIRE) ? Particle.SOUL_FIRE_FLAME : Particle.FLAME;
+		location.getWorld().spawnParticle(fireParticle, location, 5, Math.random(), Math.random(), Math.random(), 0.02);
+		location.getWorld().spawnParticle(Particle.SMOKE_LARGE, location, 2, Math.random(), Math.random(), Math.random(), 0.01);
 	}
 
 	private void playAttackSoundsAndLight() {

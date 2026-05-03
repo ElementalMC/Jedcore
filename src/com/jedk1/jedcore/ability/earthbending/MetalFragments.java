@@ -11,11 +11,12 @@ import com.projectkorra.projectkorra.region.RegionProtection;
 import com.projectkorra.projectkorra.util.BlockSource;
 import com.projectkorra.projectkorra.util.ClickType;
 import com.projectkorra.projectkorra.util.DamageHandler;
-import com.projectkorra.projectkorra.util.ParticleEffect;
+
 import com.projectkorra.projectkorra.util.TempBlock;
 import com.projectkorra.projectkorra.util.TempFallingBlock;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -270,7 +271,14 @@ public class MetalFragments extends MetalAbility implements AddonAbility {
 				}
 			}
 			if (touchedLiving || f.isOnGround() || f.isDead()) {
-				ParticleEffect.ITEM_CRACK.display(f.getLocation(), 3, 0.3, 0.3, 0.3, 0.2, f.getItemStack());
+				f.getLocation().getWorld().spawnParticle(
+						Particle.ITEM_CRACK,
+						f.getLocation(),
+						3,
+						0.3, 0.3, 0.3,
+						0.2,
+						f
+				);
 				f.remove();
 				iterator.remove();
 			}
@@ -303,7 +311,14 @@ public class MetalFragments extends MetalAbility implements AddonAbility {
 
 	public void removeFragments() {
 		for (Item i : thrownFragments) {
-			ParticleEffect.ITEM_CRACK.display(i.getLocation(), 3, 0.3, 0.3, 0.3, 0.2, i.getItemStack());
+			i.getLocation().getWorld().spawnParticle(
+					Particle.ITEM_CRACK,
+					i.getLocation(),
+					3,
+					0.3, 0.3, 0.3,
+					0.2,
+					i
+			);
 			i.remove();
 		}
 		thrownFragments.clear();

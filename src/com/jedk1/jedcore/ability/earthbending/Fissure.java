@@ -11,11 +11,12 @@ import com.projectkorra.projectkorra.attribute.Attribute;
 import com.projectkorra.projectkorra.earthbending.passive.DensityShift;
 import com.projectkorra.projectkorra.region.RegionProtection;
 import com.projectkorra.projectkorra.util.Information;
-import com.projectkorra.projectkorra.util.ParticleEffect;
+
 import com.projectkorra.projectkorra.util.TempBlock;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.ConfigurationSection;
@@ -231,7 +232,7 @@ public class Fissure extends LavaAbility implements AddonAbility {
 	}
 
 	private void addTempBlock(Block block, Material material) {
-		ParticleEffect.LAVA.display(block.getLocation(), 0, 0, 0, 0, 1);
+		block.getLocation().getWorld().spawnParticle(Particle.LAVA, block.getLocation(), 0, 0, 0, 0, 1);
 		playEarthbendingSound(block.getLocation());
 		if (DensityShift.isPassiveSand(block)) {
             DensityShift.revertSand(block);

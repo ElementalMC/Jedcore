@@ -9,10 +9,11 @@ import com.projectkorra.projectkorra.ability.AddonAbility;
 import com.projectkorra.projectkorra.ability.AirAbility;
 import com.projectkorra.projectkorra.ability.ChiAbility;
 import com.projectkorra.projectkorra.attribute.Attribute;
-import com.projectkorra.projectkorra.util.ParticleEffect;
+
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -125,8 +126,8 @@ public class WallRun extends ChiAbility implements AddonAbility {
 		}
 
 		if (particles) {
-			ParticleEffect.CRIT.display(player.getLocation(), 4, Math.random(), Math.random(), Math.random(), 0);
-			ParticleEffect.BLOCK_CRACK.display(player.getLocation(), 3, Math.random(), Math.random(), Math.random(), 0.1, Material.STONE.createBlockData());
+			player.getWorld().spawnParticle(Particle.CRIT, player.getLocation(), 4, Math.random(), Math.random(), Math.random(), 0);
+			player.getWorld().spawnParticle(Particle.BLOCK_CRACK, player.getLocation(), 3, Math.random(), Math.random(), Math.random(), 0.1, Material.STONE.createBlockData());
 			AirAbility.playAirbendingParticles(player.getLocation(), 5);
 		}
 

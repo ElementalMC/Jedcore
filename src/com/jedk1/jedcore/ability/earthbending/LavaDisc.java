@@ -20,7 +20,7 @@ import com.projectkorra.projectkorra.earthbending.passive.DensityShift;
 import com.projectkorra.projectkorra.firebending.util.FireDamageTimer;
 import com.projectkorra.projectkorra.region.RegionProtection;
 import com.projectkorra.projectkorra.util.DamageHandler;
-import com.projectkorra.projectkorra.util.ParticleEffect;
+
 import com.projectkorra.projectkorra.util.TempBlock;
 import org.bukkit.Color;
 import org.bukkit.Location;
@@ -188,8 +188,8 @@ public class LavaDisc extends LavaAbility implements AddonAbility {
 		DamageHandler.damageEntity(entity, damage, this);
 		entity.setFireTicks(20);
 		new FireDamageTimer(entity, player, this);
-		ParticleEffect.LAVA.display(entity.getLocation(), 15, Math.random(), Math.random(), Math.random(), 0.1);
-	}
+		entity.getLocation().getWorld().spawnParticle(Particle.LAVA, entity.getLocation(), 15, Math.random(), Math.random(), Math.random(), 0.1);
+    }
 
 	@Override
 	public long getCooldown() {
@@ -513,23 +513,19 @@ public class LavaDisc extends LavaAbility implements AddonAbility {
 
 		void render(Location location, boolean largeLava) {
 			if (largeLava)
-				ParticleEffect.LAVA.display(location, particles * 2, Math.random(), Math.random(), Math.random(), 0.1);
+				location.getWorld().spawnParticle(Particle.LAVA, location, particles * 2, Math.random(), Math.random(), Math.random(), 0.1);
 			else
-				ParticleEffect.LAVA.display(location, 1, Math.random(), Math.random(), Math.random(), 0.1);
-
+				location.getWorld().spawnParticle(Particle.LAVA, location, 1, Math.random(), Math.random(), Math.random(), 0.1);
 			angle += 1;
-			if (angle > 360)
-				angle = 0;
-
+			if (angle > 360) angle = 0;
 			for (Location l : JCMethods.getCirclePoints(location, 20, 1, angle)) {
-				ParticleEffect.REDSTONE.display(l, 0, 196, 93, 0, 0.005F, new Particle.DustOptions(Color.fromRGB(196, 93, 0), 1));
+				location.getWorld().spawnParticle(Particle.REDSTONE, l, 0, 196 / 255.0, 93 / 255.0, 0, 0.005F, new Particle.DustOptions(Color.fromRGB(196, 93, 0), 1));
 				if (largeLava && damageBlocks)
 					damageBlocks(l);
 			}
-
 			for (Location l : JCMethods.getCirclePoints(location, 10, 0.5, angle)) {
-				ParticleEffect.FLAME.display(l, 1, 0, 0, 0, 0.01);
-				ParticleEffect.SMOKE_NORMAL.display(l, 1, 0, 0, 0, 0.05);
+				location.getWorld().spawnParticle(Particle.FLAME, l, 1, 0, 0, 0, 0.01);
+				location.getWorld().spawnParticle(Particle.SMOKE_NORMAL, l, 1, 0, 0, 0, 0.05);
 				if (largeLava && damageBlocks)
 					damageBlocks(l);
 			}
@@ -538,8 +534,8 @@ public class LavaDisc extends LavaAbility implements AddonAbility {
 		private void damageBlocks(Location l) {
 			Block block = l.getBlock();
 			if (EarthAbility.getMovedEarth().containsKey(block)) {
-				ParticleEffect.LAVA.display(l, 20, 0.5, 0.5, 0.5, 0.2);
-				ParticleEffect.BLOCK_CRACK.display(l, 15, 0.3, 0.3, 0.3, 0.15, Material.LAVA.createBlockData());
+				location.getWorld().spawnParticle(Particle.LAVA, l, 20, 0.5, 0.5, 0.5, 0.2);
+				location.getWorld().spawnParticle(Particle.BLOCK_CRACK, l, 15, 0.3, 0.3, 0.3, 0.15, Material.LAVA.createBlockData());
 				return;
 			}
 			if (!RegionProtection.isRegionProtected(player, l, LavaDisc.this)) {
@@ -547,16 +543,13 @@ public class LavaDisc extends LavaAbility implements AddonAbility {
 					if (DensityShift.isPassiveSand(block)) {
 						DensityShift.revertSand(block);
 					}
-
 					if (lavaTrail) {
 						new RegenTempBlock(block, Material.LAVA, Material.LAVA.createBlockData(bd -> ((Levelled) bd).setLevel(4)), regenTime);
-
 						trailBlocks.add(block);
 					} else {
 						new RegenTempBlock(block, Material.AIR, Material.AIR.createBlockData(), regenTime);
 					}
-
-					ParticleEffect.LAVA.display(l, particles * 2, Math.random(), Math.random(), Math.random(), 0.2);
+					location.getWorld().spawnParticle(Particle.LAVA, l, particles * 2, Math.random(), Math.random(), Math.random(), 0.2);
 				}
 			}
 		}

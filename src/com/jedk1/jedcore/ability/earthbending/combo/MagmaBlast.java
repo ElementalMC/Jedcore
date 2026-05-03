@@ -14,11 +14,12 @@ import com.projectkorra.projectkorra.ability.util.ComboUtil;
 import com.projectkorra.projectkorra.attribute.Attribute;
 import com.projectkorra.projectkorra.earthbending.lava.LavaFlow;
 import com.projectkorra.projectkorra.util.DamageHandler;
-import com.projectkorra.projectkorra.util.ParticleEffect;
+
 import com.projectkorra.projectkorra.util.TempBlock;
 import com.projectkorra.projectkorra.util.TempFallingBlock;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -261,11 +262,9 @@ public class MagmaBlast extends LavaAbility implements AddonAbility, ComboAbilit
 	}
 
 	private void playParticles(Location location) {
-		location.add(.5,.5,.5);
-
-		ParticleEffect.LAVA.display(location, 2, Math.random(), Math.random(), Math.random(), 0f);
-		ParticleEffect.SMOKE_NORMAL.display(location, 2, Math.random(), Math.random(), Math.random(), 0f);
-
+		location.add(0.5, 0.5, 0.5);
+		location.getWorld().spawnParticle(Particle.LAVA, location, 2, Math.random(), Math.random(), Math.random(), 0f);
+		location.getWorld().spawnParticle(Particle.SMOKE_NORMAL, location, 2, Math.random(), Math.random(), Math.random(), 0f);
 		for (int i = 0; i < 10; i++) {
 			GeneralMethods.displayColoredParticle("FFA400", getOffsetLocation(location, 2));
 			GeneralMethods.displayColoredParticle("FF8C00", getOffsetLocation(location, 2));
@@ -399,9 +398,9 @@ public class MagmaBlast extends LavaAbility implements AddonAbility, ComboAbilit
 		float radius = mb.explosionRadius;
 		float speed = 0.1f;
 
-		ParticleEffect.FLAME.display(location, PARTICLE_COUNT, randomBinomial(radius), randomBinomial(radius), randomBinomial(radius), speed);
-		ParticleEffect.SMOKE_LARGE.display(location, PARTICLE_COUNT, randomBinomial(radius), randomBinomial(radius), randomBinomial(radius), speed);
-		ParticleEffect.FIREWORKS_SPARK.display(location, PARTICLE_COUNT, randomBinomial(radius), randomBinomial(radius), randomBinomial(radius), speed);
+		location.getWorld().spawnParticle(Particle.FLAME, location, PARTICLE_COUNT, randomBinomial(radius), randomBinomial(radius), randomBinomial(radius), speed);
+		location.getWorld().spawnParticle(Particle.SMOKE_LARGE, location, PARTICLE_COUNT, randomBinomial(radius), randomBinomial(radius), randomBinomial(radius), speed);
+		location.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, location, PARTICLE_COUNT, randomBinomial(radius), randomBinomial(radius), randomBinomial(radius), speed);
 
 		ThreadLocalRandom rand = ThreadLocalRandom.current();
 

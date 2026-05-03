@@ -24,7 +24,7 @@ import com.projectkorra.projectkorra.firebending.FireBlast;
 import com.projectkorra.projectkorra.firebending.FireBlastCharged;
 import com.projectkorra.projectkorra.firebending.lightning.Lightning;
 import com.projectkorra.projectkorra.util.DamageHandler;
-import com.projectkorra.projectkorra.util.ParticleEffect;
+
 import com.projectkorra.projectkorra.util.TempBlock;
 import com.projectkorra.projectkorra.waterbending.Torrent;
 import com.projectkorra.projectkorra.waterbending.ice.IceBlast;
@@ -392,7 +392,14 @@ public class IceWall extends IceAbility implements AddonAbility {
                                 if (!iw.isWallDoneFor) {
                                     for (Block block : es.getBlocksIncludingInner()) {
                                         if (block != null && !ElementalAbility.isAir(block.getType())) {
-                                            ParticleEffect.BLOCK_CRACK.display(block.getLocation(), 5, 0, 0, 0, 0, block.getBlockData().clone());
+											block.getLocation().getWorld().spawnParticle(
+													Particle.BLOCK_CRACK,
+													block.getLocation(),
+													5,
+													0, 0, 0,
+													0,
+													block.getBlockData().clone()
+											);
                                         }
                                     }
                                     es.remove();

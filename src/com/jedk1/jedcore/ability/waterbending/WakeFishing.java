@@ -7,9 +7,10 @@ import com.projectkorra.projectkorra.ability.WaterAbility;
 import com.projectkorra.projectkorra.attribute.Attribute;
 import com.projectkorra.projectkorra.util.BlockSource;
 import com.projectkorra.projectkorra.util.ClickType;
-import com.projectkorra.projectkorra.util.ParticleEffect;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Item;
@@ -109,11 +110,16 @@ public class WakeFishing extends WaterAbility implements AddonAbility {
 		if (point == 32)
 			point = 0;
 		for (int i = 0; i < 4; i++) {
-			ParticleEffect.WATER_SPLASH.display(getCirclePoints(focusedBlock.getLocation().clone().add(0.5, 0, 0.5), 32, (i * 90), 1).get(point), 3, 0, 0, 0, 0.05);
-			ParticleEffect.WATER_WAKE.display(getCirclePoints(focusedBlock.getLocation().clone().add(0.5, -0.6, 0.5), 32, (i * 90), 1).get(point), 1, 0, 0, 0, 0.02);
+			location.getWorld().spawnParticle(Particle.WATER_SPLASH,
+					getCirclePoints(focusedBlock.getLocation().clone().add(0.5, 0, 0.5), 32, (i * 90), 1).get(point),
+					3, 0, 0, 0, 0.05);
+			location.getWorld().spawnParticle(Particle.WATER_WAKE,
+					getCirclePoints(focusedBlock.getLocation().clone().add(0.5, -0.6, 0.5), 32, (i * 90), 1).get(point),
+					1, 0, 0, 0, 0.02);
 		}
-
-		ParticleEffect.SMOKE_NORMAL.display(focusedBlock.getLocation().clone().add(.5, .5, .5), 2, 0, 0, 0, 0.001);
+		location.getWorld().spawnParticle(Particle.SMOKE_NORMAL,
+				focusedBlock.getLocation().clone().add(0.5, 0.5, 0.5),
+				2, 0, 0, 0, 0.001);
 	}
 
 	private void spawnFishRandom() {

@@ -12,8 +12,6 @@ import com.projectkorra.projectkorra.ability.util.MultiAbilityManager;
 import com.projectkorra.projectkorra.ability.util.MultiAbilityManager.MultiAbilityInfoSub;
 import com.projectkorra.projectkorra.attribute.Attribute;
 import com.projectkorra.projectkorra.region.RegionProtection;
-import com.projectkorra.projectkorra.util.FlightHandler;
-import com.projectkorra.projectkorra.util.ParticleEffect;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -339,10 +337,10 @@ public class ElementSphere extends AvatarAbility implements AddonAbility, MultiA
 
 	private void playFireParticles() {
 		if (fireUses != 0) {
-			ParticleEffect flame = bPlayer.hasSubElement(Element.BLUE_FIRE) ? ParticleEffect.SOUL_FIRE_FLAME : ParticleEffect.FLAME;
+			Particle fireParticle = bPlayer.hasSubElement(Element.BLUE_FIRE) ? Particle.SOUL_FIRE_FLAME : Particle.FLAME;
 			for (int i = -180; i < 180; i += 40) {
 				Location particleLoc = calculateCircularLocation(location, 2, i, 2);
-				flame.display(particleLoc, 0, 0, 0, 0, 1);
+				particleLoc.getWorld().spawnParticle(fireParticle, particleLoc, 0, 0, 0, 0, 1);
 				JCMethods.emitLight(particleLoc);
 			}
 		}

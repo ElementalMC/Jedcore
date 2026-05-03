@@ -8,11 +8,12 @@ import com.projectkorra.projectkorra.ability.AddonAbility;
 import com.projectkorra.projectkorra.ability.ElementalAbility;
 import com.projectkorra.projectkorra.ability.WaterAbility;
 import com.projectkorra.projectkorra.attribute.Attribute;
-import com.projectkorra.projectkorra.util.ParticleEffect;
+
 import com.projectkorra.projectkorra.util.TempBlock;
 import com.projectkorra.projectkorra.waterbending.util.WaterReturn;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -343,7 +344,7 @@ public class Drain extends WaterAbility implements AddonAbility {
 					playerLoc = player.getEyeLocation().add(player.getLocation().getDirection().multiply(holdRange)).subtract(0, .8, 0);
 				Vector dir = GeneralMethods.getDirection(l, playerLoc);
 				l = l.add(dir.multiply(absorbSpeed));
-				ParticleEffect.WATER_SPLASH.display(l, 1, 0, 0, 0, 0);
+				l.getWorld().spawnParticle(Particle.WATER_SPLASH, l, 1, 0, 0, 0, 0);
 				GeneralMethods.displayColoredParticle("0099FF", l);
 				if (l.distance(playerLoc) < 1) {
 					toRemove.add(locations.indexOf(l));

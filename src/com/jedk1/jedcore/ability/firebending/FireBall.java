@@ -20,8 +20,9 @@ import com.projectkorra.projectkorra.firebending.BlazeArc;
 import com.projectkorra.projectkorra.firebending.util.FireDamageTimer;
 import com.projectkorra.projectkorra.region.RegionProtection;
 import com.projectkorra.projectkorra.util.DamageHandler;
-import com.projectkorra.projectkorra.util.ParticleEffect;
+
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -129,8 +130,8 @@ public class FireBall extends FireAbility implements AddonAbility {
 				return;
 			}
 
-			ParticleEffect.SMOKE_LARGE.display(location, 1, 0, 0, 0, 0);
-			ParticleEffect.SMOKE_LARGE.display(location, 1, 0, 0, 0, 0);
+			location.getWorld().spawnParticle(Particle.SMOKE_LARGE, location, 1, 0, 0, 0, 0);
+			location.getWorld().spawnParticle(Particle.SMOKE_NORMAL, location, 1, 0, 0, 0, 0);
 			for (int j = 0; j < 5; j++) {
 				playFirebendingParticles(location, 1, 0, 0, 0);
 			}

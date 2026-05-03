@@ -17,7 +17,7 @@ import com.projectkorra.projectkorra.firebending.HeatControl;
 import com.projectkorra.projectkorra.region.RegionProtection;
 import com.projectkorra.projectkorra.util.ChatUtil;
 import com.projectkorra.projectkorra.util.DamageHandler;
-import com.projectkorra.projectkorra.util.ParticleEffect;
+
 import com.projectkorra.projectkorra.util.TempBlock;
 import com.projectkorra.projectkorra.waterbending.ice.PhaseChange;
 import org.bukkit.Color;
@@ -229,14 +229,15 @@ public class FireBreath extends FireAbility implements AddonAbility {
 				}
 			} else {
 				playFirebendingParticles(loc, particles, Math.random(), Math.random(), Math.random());
-				ParticleEffect.SMOKE_NORMAL.display(loc, particles, Math.random(), Math.random(), Math.random(), size);
+				loc.getWorld().spawnParticle(Particle.SMOKE_NORMAL, loc, particles, Math.random(), Math.random(), Math.random(), size);
 				JCMethods.emitLight(loc);
 			}
 		}
 	}
 
 	private void displayParticle(Location location, int amount, int r, int g, int b) {
-		ParticleEffect.REDSTONE.display(location, amount, 0, 0, 0, 0.005, new Particle.DustOptions(Color.fromRGB(r, g, b), 1));
+		Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(r, g, b), 1);
+		location.getWorld().spawnParticle(Particle.REDSTONE, location, amount, 0, 0, 0, 0.005, dustOptions);
 		JCMethods.emitLight(location);
 	}
 

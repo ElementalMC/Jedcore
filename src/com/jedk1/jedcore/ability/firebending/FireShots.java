@@ -17,6 +17,7 @@ import com.projectkorra.projectkorra.airbending.AirShield;
 import com.projectkorra.projectkorra.attribute.Attribute;
 import com.projectkorra.projectkorra.firebending.util.FireDamageTimer;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
@@ -28,7 +29,7 @@ import com.projectkorra.projectkorra.ability.AddonAbility;
 import com.projectkorra.projectkorra.ability.BlueFireAbility;
 import com.projectkorra.projectkorra.ability.FireAbility;
 import com.projectkorra.projectkorra.util.DamageHandler;
-import com.projectkorra.projectkorra.util.ParticleEffect;
+
 import org.bukkit.inventory.MainHand;
 import org.bukkit.util.Vector;
 
@@ -137,13 +138,12 @@ public class FireShots extends FireAbility implements AddonAbility {
 					return false;
 				}
 
-				if (bPlayer.canUseSubElement(SubElement.BLUE_FIRE)) {
-					ParticleEffect.SOUL_FIRE_FLAME.display(location, 5, 0.0, 0.0, 0.0, 0.02);
+                if (bPlayer.canUseSubElement(SubElement.BLUE_FIRE)) {
+					location.getWorld().spawnParticle(Particle.SOUL_FIRE_FLAME, location, 5, 0.0, 0.0, 0.0, 0.02);
 				} else {
-					ParticleEffect.FLAME.display(location, 5, 0.0, 0.0, 0.0, 0.02);
+					location.getWorld().spawnParticle(Particle.FLAME, location, 5, 0.0, 0.0, 0.0, 0.02);
 				}
-				ParticleEffect.SMOKE_NORMAL.display(location, 2, 0.0, 0.0, 0.0, 0.01);
-
+				location.getWorld().spawnParticle(Particle.SMOKE_NORMAL, location, 2, 0.0, 0.0, 0.0, 0.01);
 				JCMethods.emitLight(location);
 
 				Sphere collider = new Sphere(location.toVector(), collisionRadius);
@@ -266,7 +266,8 @@ public class FireShots extends FireAbility implements AddonAbility {
 
 	private void displayFireBalls() {
 		playFirebendingParticles(getRightHandPos().toVector().add(player.getEyeLocation().getDirection().clone().multiply(.8D)).toLocation(player.getWorld()), 3, 0, 0, 0);
-		ParticleEffect.SMOKE_NORMAL.display(getRightHandPos().toVector().add(player.getEyeLocation().getDirection().clone().multiply(.8D)).toLocation(player.getWorld()), 3, 0, 0, 0, 0.01);
+
+		getRightHandPos().getWorld().spawnParticle(Particle.SMOKE_NORMAL, getRightHandPos().toVector().add(player.getEyeLocation().getDirection().clone().multiply(.8D)).toLocation(player.getWorld()), 3, 0, 0, 0, 0.01);
 		JCMethods.emitLight(getRightHandPos().toVector().add(player.getEyeLocation().getDirection().clone().multiply(.8D)).toLocation(player.getWorld()));
 	}
 

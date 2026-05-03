@@ -12,10 +12,10 @@ import com.projectkorra.projectkorra.attribute.Attribute;
 import com.projectkorra.projectkorra.command.Commands;
 import com.projectkorra.projectkorra.region.RegionProtection;
 import com.projectkorra.projectkorra.util.DamageHandler;
-import com.projectkorra.projectkorra.util.ParticleEffect;
 import com.projectkorra.projectkorra.util.TempFallingBlock;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.BlockState;
 import org.bukkit.configuration.ConfigurationSection;
@@ -207,11 +207,11 @@ public class ESStream extends AvatarAbility implements AddonAbility {
 	}
 
 	private void displayCollisionParticles() {
-		ParticleEffect.FLAME.display(stream, 20, 0.5F, 0.5F, 0.5F, 0.5F);
-		ParticleEffect.SMOKE_LARGE.display(stream, 20, 0.5F, 0.5F, 0.5F, 0.5F);
-		ParticleEffect.FIREWORKS_SPARK.display(stream, 20, 0.5F, 0.5F, 0.5F, 0.5F);
-		ParticleEffect.SMOKE_LARGE.display(stream, 20, 0.5F, 0.5F, 0.5F, 0.5F);
-		ParticleEffect.EXPLOSION_HUGE.display(stream, 5, 0.5F, 0.5F, 0.5F, 0.5F);
+		stream.getWorld().spawnParticle(Particle.FLAME, stream, 20, 0.5F, 0.5F, 0.5F, 0.5F);
+		stream.getWorld().spawnParticle(Particle.SMOKE_LARGE, stream, 20, 0.5F, 0.5F, 0.5F, 0.5F);
+		stream.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, stream, 20, 0.5F, 0.5F, 0.5F, 0.5F);
+		stream.getWorld().spawnParticle(Particle.SMOKE_LARGE, stream, 20, 0.5F, 0.5F, 0.5F, 0.5F);
+		stream.getWorld().spawnParticle(Particle.EXPLOSION_HUGE, stream, 5, 0.5F, 0.5F, 0.5F, 0.5F);
 	}
 
 	private void playCollisionSounds(ThreadLocalRandom rand) {
@@ -252,8 +252,8 @@ public class ESStream extends AvatarAbility implements AddonAbility {
 		ThreadLocalRandom rand = ThreadLocalRandom.current();
 		switch (index) {
 			case 0:
-				ParticleEffect flame = bPlayer.hasSubElement(Element.BLUE_FIRE) ? ParticleEffect.SOUL_FIRE_FLAME : ParticleEffect.FLAME;
-				flame.display(location, 1, 0.05F, 0.05F, 0.05F, 0.005F);
+				Particle fireParticle = bPlayer.hasSubElement(Element.BLUE_FIRE) ? Particle.SOUL_FIRE_FLAME : Particle.FLAME;
+				location.getWorld().spawnParticle(fireParticle, location, 1, 0.05F, 0.05F, 0.05F, 0.005F);
 				break;
 			case 1:
 				String color = "#FFFFFF";

@@ -13,11 +13,12 @@ import com.projectkorra.projectkorra.attribute.Attribute;
 import com.projectkorra.projectkorra.earthbending.passive.DensityShift;
 import com.projectkorra.projectkorra.region.RegionProtection;
 import com.projectkorra.projectkorra.util.DamageHandler;
-import com.projectkorra.projectkorra.util.ParticleEffect;
+
 import com.projectkorra.projectkorra.util.TempBlock;
 import com.projectkorra.projectkorra.util.TempFallingBlock;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.configuration.ConfigurationSection;
@@ -170,8 +171,7 @@ public class EarthKick extends EarthAbility implements AddonAbility {
 			location.setY(location.getY() + 1.0);
 		}
 
-		ParticleEffect.CRIT.display(location, 10, Math.random(), Math.random(), Math.random(), 0.1);
-
+		location.getWorld().spawnParticle(Particle.CRIT, location, 10, Math.random(), Math.random(), Math.random(), 0.1);
 		int yaw = Math.round(location.getYaw());
 
 		playEarthbendingSound(location);
@@ -202,8 +202,8 @@ public class EarthKick extends EarthAbility implements AddonAbility {
 			}
 
 			for (int i = 0; i < 2; i++) {
-				ParticleEffect.BLOCK_CRACK.display(fb.getLocation(), 1, 0.0, 0.0, 0.0, 0.1, materialData);
-				ParticleEffect.BLOCK_CRACK.display(fb.getLocation(), 1, 0.0, 0.0, 0.0, 0.2, materialData);
+				location.getWorld().spawnParticle(Particle.BLOCK_CRACK, location, 1, 0.0, 0.0, 0.0, 0.1, materialData);
+				location.getWorld().spawnParticle(Particle.BLOCK_CRACK, location, 1, 0.0, 0.0, 0.0, 0.2, materialData);
 			}
 
 			AABB collider = BlockUtil.getFallingBlockBoundsFull(fb).scale(entityCollisionRadius * 2.0);
