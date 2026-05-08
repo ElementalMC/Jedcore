@@ -11,6 +11,7 @@ import com.jedk1.jedcore.collision.Sphere;
 import com.jedk1.jedcore.configuration.JedCoreConfig;
 import com.jedk1.jedcore.util.AirShieldReflector;
 import com.jedk1.jedcore.util.FireTick;
+import com.jedk1.jedcore.util.GreenFireHelper;
 import com.projectkorra.projectkorra.ability.CoreAbility;
 import com.projectkorra.projectkorra.ability.util.Collision;
 import com.projectkorra.projectkorra.airbending.AirShield;
@@ -27,7 +28,6 @@ import com.projectkorra.projectkorra.GeneralMethods;
 import com.projectkorra.projectkorra.ability.Ability;
 import com.projectkorra.projectkorra.ability.AddonAbility;
 import com.projectkorra.projectkorra.ability.BlueFireAbility;
-import com.projectkorra.projectkorra.ability.GreenFireAbility;
 import com.projectkorra.projectkorra.ability.FireAbility;
 import com.projectkorra.projectkorra.util.DamageHandler;
 
@@ -139,7 +139,9 @@ public class FireShots extends FireAbility implements AddonAbility {
 					return false;
 				}
 
-                if (bPlayer.canUseSubElement(SubElement.BLUE_FIRE)) {
+				if (GreenFireHelper.canUseGreenFire(bPlayer)) {
+					location.getWorld().spawnParticle(Particle.COPPER_FIRE_FLAME, location, 5, 0.0, 0.0, 0.0, 0.02);
+				} else if (bPlayer.canUseSubElement(SubElement.BLUE_FIRE)) {
 					location.getWorld().spawnParticle(Particle.SOUL_FIRE_FLAME, location, 5, 0.0, 0.0, 0.0, 0.02);
 				} else {
 					location.getWorld().spawnParticle(Particle.FLAME, location, 5, 0.0, 0.0, 0.0, 0.02);
