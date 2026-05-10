@@ -11,7 +11,6 @@ import com.jedk1.jedcore.collision.Sphere;
 import com.jedk1.jedcore.configuration.JedCoreConfig;
 import com.jedk1.jedcore.util.AirShieldReflector;
 import com.jedk1.jedcore.util.FireTick;
-import com.jedk1.jedcore.util.GreenFireHelper;
 import com.projectkorra.projectkorra.ability.CoreAbility;
 import com.projectkorra.projectkorra.ability.util.Collision;
 import com.projectkorra.projectkorra.airbending.AirShield;
@@ -37,6 +36,7 @@ import org.bukkit.util.Vector;
 public class FireShots extends FireAbility implements AddonAbility {
 
 	private final List<FireShot> shots = new ArrayList<>();
+	private static final Particle GREEN_FIRE_PARTICLE = resolveGreenFireParticle();
 	@Attribute(Attribute.COOLDOWN)
 	private long cooldown;
 	@Attribute("MaxShots")
@@ -96,6 +96,14 @@ public class FireShots extends FireAbility implements AddonAbility {
 		}
 	}
 
+	private static Particle resolveGreenFireParticle() {
+		try {
+			return Particle.valueOf("COPPER_FIRE_FLAME");
+		} catch (IllegalArgumentException ignored) {
+			return Particle.FLAME;
+		}
+	}
+
 	public class FireShot {
 
 		private final Ability ability;
@@ -139,8 +147,8 @@ public class FireShots extends FireAbility implements AddonAbility {
 					return false;
 				}
 
-				if (GreenFireHelper.canUseGreenFire(bPlayer)) {
-					location.getWorld().spawnParticle(Particle.COPPER_FIRE_FLAME, location, 5, 0.0, 0.0, 0.0, 0.02);
+				if (bPlayer.canUseSubElement(SubElement.GREEN_FIRE)) {
+					location.getWorld().spawnParticle(GREEN_FIRE_PARTICLE, location, 5, 0.0, 0.0, 0.0, 0.02);
 				} else if (bPlayer.canUseSubElement(SubElement.BLUE_FIRE)) {
 					location.getWorld().spawnParticle(Particle.SOUL_FIRE_FLAME, location, 5, 0.0, 0.0, 0.0, 0.02);
 				} else {
