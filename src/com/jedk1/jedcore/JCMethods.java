@@ -28,7 +28,7 @@ public class JCMethods {
 
 	// todo: either use PKs isPlant or the registry/tags (with config)
 	private static final ArrayList<Material> SMALL_PLANTS = new ArrayList<Material>(){{
-		addAll(Arrays.asList(Material.GRASS, Material.FERN, Material.POPPY, Material.DANDELION, Material.OAK_SAPLING,
+		addAll(Arrays.asList(Material.SHORT_GRASS, Material.FERN, Material.POPPY, Material.DANDELION, Material.OAK_SAPLING,
 				Material.SPRUCE_SAPLING, Material.BIRCH_SAPLING, Material.JUNGLE_SAPLING, Material.ACACIA_SAPLING,
 				Material.DARK_OAK_SAPLING, Material.ALLIUM, Material.ORANGE_TULIP, Material.PINK_TULIP, Material.RED_TULIP,
 				Material.WHITE_TULIP, Material.ROSE_BUSH, Material.BLUE_ORCHID, Material.LILAC, Material.OXEYE_DAISY,

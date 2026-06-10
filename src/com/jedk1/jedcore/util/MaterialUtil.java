@@ -16,7 +16,7 @@ public class MaterialUtil {
         addAll(Arrays.asList(
                 Material.AIR, Material.VOID_AIR, Material.CAVE_AIR, Material.OAK_SAPLING, Material.SPRUCE_SAPLING, Material.BIRCH_SAPLING,
                 Material.JUNGLE_SAPLING, Material.ACACIA_SAPLING, Material.DARK_OAK_SAPLING, Material.WATER,
-                Material.LAVA, Material.COBWEB, Material.TALL_GRASS, Material.GRASS, Material.FERN, Material.DEAD_BUSH,
+                Material.LAVA, Material.COBWEB, Material.TALL_GRASS, Material.SHORT_GRASS, Material.FERN, Material.DEAD_BUSH,
                 Material.DANDELION, Material.POPPY, Material.BLUE_ORCHID, Material.ALLIUM,
                 Material.AZURE_BLUET, Material.RED_TULIP, Material.ORANGE_TULIP, Material.WHITE_TULIP, Material.PINK_TULIP,
                 Material.OXEYE_DAISY, Material.BROWN_MUSHROOM, Material.RED_MUSHROOM, Material.TORCH, Material.FIRE,

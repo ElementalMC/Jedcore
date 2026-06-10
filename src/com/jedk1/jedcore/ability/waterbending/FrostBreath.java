@@ -278,7 +278,7 @@ public class FrostBreath extends IceAbility implements AddonAbility {
 					freezeGround(loc);
 				}
 
-				loc.getWorld().spawnParticle(Particle.SNOW_SHOVEL, loc, config.particles, Math.random(), Math.random(), Math.random(), size);
+				loc.getWorld().spawnParticle(Particle.ITEM_SNOWBALL, loc, config.particles, Math.random(), Math.random(), Math.random(), size);
 
 				JCMethods.displayColoredParticles("#DCDCDC", loc, 1, Math.random(), Math.random(), Math.random(), 0.003f);
 				JCMethods.displayColoredParticles("#9696FF", loc, 1, Math.random(), Math.random(), Math.random(), 0.0035f);
