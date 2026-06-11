@@ -51,6 +51,9 @@ public class Combustion extends CombustionAbility implements AddonAbility {
 
 	public Combustion(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!isEnabled()) return;
 

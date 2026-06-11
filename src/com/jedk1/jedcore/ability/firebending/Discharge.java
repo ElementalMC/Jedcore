@@ -57,6 +57,9 @@ public class Discharge extends LightningAbility implements AddonAbility {
 
 	public Discharge(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!bPlayer.canBend(this) || hasAbility(player, Discharge.class) || !bPlayer.canLightningbend()) {
 			return;

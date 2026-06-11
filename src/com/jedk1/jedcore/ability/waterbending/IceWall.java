@@ -85,6 +85,9 @@ public class IceWall extends IceAbility implements AddonAbility {
 
 	public IceWall(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 		if (!bPlayer.canBendIgnoreCooldowns(this) || !bPlayer.canIcebend()) {
 			return;
 		}

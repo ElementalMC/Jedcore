@@ -58,6 +58,9 @@ public class MetalFragments extends MetalAbility implements AddonAbility {
 
 	public MetalFragments(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 		
 		if (hasAbility(player, MetalFragments.class)) {
 			MetalFragments.selectAnotherSource(player);

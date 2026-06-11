@@ -47,6 +47,9 @@ public class MetalHook extends MetalAbility implements AddonAbility {
 
 	public MetalHook(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!bPlayer.canBend(this) || !bPlayer.canMetalbend()) {
 			return;

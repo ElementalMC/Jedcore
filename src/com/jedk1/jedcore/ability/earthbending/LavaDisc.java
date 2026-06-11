@@ -62,6 +62,9 @@ public class LavaDisc extends LavaAbility implements AddonAbility {
 
 	public LavaDisc(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!bPlayer.canBend(this) || !bPlayer.canLavabend()) {
 			return;

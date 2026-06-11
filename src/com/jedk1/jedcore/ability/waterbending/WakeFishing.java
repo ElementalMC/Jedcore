@@ -43,6 +43,9 @@ public class WakeFishing extends WaterAbility implements AddonAbility {
 
 	public WakeFishing(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 		if (!bPlayer.canBend(this)) {
 			return;
 		}

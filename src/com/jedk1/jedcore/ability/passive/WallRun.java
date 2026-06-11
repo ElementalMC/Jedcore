@@ -41,6 +41,9 @@ public class WallRun extends ChiAbility implements AddonAbility {
 
 	public WallRun(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		setFields();
 		if (!enabled) return;

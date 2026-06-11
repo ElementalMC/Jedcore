@@ -62,6 +62,9 @@ public class EarthKick extends EarthAbility implements AddonAbility {
 
 	public EarthKick(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!bPlayer.canBend(this)) {
 			return;

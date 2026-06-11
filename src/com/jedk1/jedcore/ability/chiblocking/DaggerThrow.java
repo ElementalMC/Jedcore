@@ -48,6 +48,9 @@ public class DaggerThrow extends ChiAbility implements AddonAbility {
 
 	public DaggerThrow(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!bPlayer.canBend(this)) {
 			return;

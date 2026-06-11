@@ -51,6 +51,9 @@ public class AirBreath extends AirAbility implements AddonAbility {
 
 	public AirBreath(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 		if (!bPlayer.canBend(this)) {
 			return;
 		}

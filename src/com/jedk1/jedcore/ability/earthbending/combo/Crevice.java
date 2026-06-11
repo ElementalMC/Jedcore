@@ -53,6 +53,9 @@ public class Crevice extends EarthAbility implements AddonAbility, ComboAbility 
 
 	public Crevice(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!bPlayer.canBendIgnoreBinds(this)) {
 			return;

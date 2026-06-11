@@ -39,6 +39,9 @@ public class AirSlam extends AirAbility implements AddonAbility, ComboAbility {
 
 	public AirSlam(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 		
 		if (!bPlayer.canBendIgnoreBinds(this)) {
 			return;

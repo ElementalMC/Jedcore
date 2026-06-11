@@ -35,6 +35,9 @@ public class ESAir extends AvatarAbility implements AddonAbility {
 
 	public ESAir(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!hasAbility(player, ElementSphere.class)) {
 			return;

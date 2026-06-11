@@ -50,6 +50,9 @@ public class FireBall extends FireAbility implements AddonAbility {
 
 	public FireBall(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 		if (!bPlayer.canBend(this)) {
 			return;
 		}

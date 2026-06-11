@@ -36,6 +36,9 @@ public class EarthPillar extends EarthAbility implements AddonAbility {
 
 	public EarthPillar(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!bPlayer.canBend(this)) {
 			return;

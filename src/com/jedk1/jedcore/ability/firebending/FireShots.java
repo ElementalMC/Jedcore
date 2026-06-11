@@ -55,6 +55,9 @@ public class FireShots extends FireAbility implements AddonAbility {
 
 	public FireShots(Player player){
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!bPlayer.canBend(this) || hasAbility(player, FireShots.class)) {
 			return;

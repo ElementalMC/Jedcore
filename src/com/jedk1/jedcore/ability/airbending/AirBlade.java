@@ -52,6 +52,9 @@ public class AirBlade extends AirAbility implements AddonAbility {
 
 	public AirBlade(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 		if (!bPlayer.canBend(this)) {
 			return;
 		}

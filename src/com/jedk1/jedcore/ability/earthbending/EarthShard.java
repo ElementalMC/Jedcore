@@ -67,6 +67,9 @@ public class EarthShard extends EarthAbility implements AddonAbility {
 
 	public EarthShard(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!bPlayer.canBend(this)) {
 			return;

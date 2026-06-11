@@ -78,6 +78,9 @@ public class MagmaBlast extends LavaAbility implements AddonAbility, ComboAbilit
 
 	public MagmaBlast(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 		setFields();
 
 		if (!bPlayer.canBendIgnoreBinds(this)) {

@@ -65,6 +65,9 @@ public class FireBreath extends FireAbility implements AddonAbility {
 
 	public FireBreath(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 		if (!bPlayer.canBend(this) || hasAbility(player, FireBreath.class)) {
 			return;
 		}

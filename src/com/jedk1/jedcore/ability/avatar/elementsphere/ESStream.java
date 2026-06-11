@@ -55,6 +55,9 @@ public class ESStream extends AvatarAbility implements AddonAbility {
 
 	public ESStream(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!hasAbility(player, ElementSphere.class)) {
 			return;

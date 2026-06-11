@@ -33,6 +33,9 @@ public class SwiftStream extends FlightAbility implements AddonAbility, ComboAbi
 
 	public SwiftStream(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!bPlayer.canBendIgnoreBinds(this) || !bPlayer.canUseFlight()) {
 			return;

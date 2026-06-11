@@ -46,6 +46,9 @@ public class ESEarth extends AvatarAbility implements AddonAbility {
 
 	public ESEarth(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 		if (!hasAbility(player, ElementSphere.class)) {
 			return;
 		}

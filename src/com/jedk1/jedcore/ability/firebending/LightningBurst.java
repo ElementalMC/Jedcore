@@ -51,6 +51,9 @@ public class LightningBurst extends LightningAbility implements AddonAbility {
 
 	public LightningBurst(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 		if (!bPlayer.canBend(this) || hasAbility(player, LightningBurst.class)) {
 			return;
 		}

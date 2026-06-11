@@ -32,6 +32,9 @@ public class Meditate extends SpiritualAbility implements AddonAbility {
 
 	public Meditate(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 		if (!bPlayer.canBend(this)) {
 			return;
 		}

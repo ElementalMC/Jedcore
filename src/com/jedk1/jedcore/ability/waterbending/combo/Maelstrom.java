@@ -48,6 +48,9 @@ public class Maelstrom extends WaterAbility implements AddonAbility, ComboAbilit
 
 	public Maelstrom(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 		if (!bPlayer.canBendIgnoreBinds(this) || hasAbility(player, Maelstrom.class)) {
 			return;
 		}

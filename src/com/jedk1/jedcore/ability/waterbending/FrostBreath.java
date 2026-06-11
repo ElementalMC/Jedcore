@@ -52,6 +52,9 @@ public class FrostBreath extends IceAbility implements AddonAbility {
 
 	public FrostBreath(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!bPlayer.canBend(this) || !bPlayer.canIcebend()) {
 			return;

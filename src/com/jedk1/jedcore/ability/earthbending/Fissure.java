@@ -58,6 +58,9 @@ public class Fissure extends LavaAbility implements AddonAbility {
 
 	public Fissure(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 		
 		if (!bPlayer.canBend(this) || hasAbility(player, Fissure.class) || !bPlayer.canLavabend()) {
 			return;

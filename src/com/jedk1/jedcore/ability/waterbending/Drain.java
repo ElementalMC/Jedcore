@@ -77,6 +77,9 @@ public class Drain extends WaterAbility implements AddonAbility {
 
 	public Drain(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 		if (!bPlayer.canBend(this) || hasAbility(player, Drain.class)) {
 			return;
 		}

@@ -62,6 +62,9 @@ public class FireComet extends FireAbility implements AddonAbility {
 
 	public FireComet(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!bPlayer.canBend(this) || hasAbility(player, FireComet.class)) {
 			return;

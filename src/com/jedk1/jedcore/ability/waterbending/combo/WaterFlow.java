@@ -86,6 +86,9 @@ public class WaterFlow extends WaterAbility implements AddonAbility, ComboAbilit
 
 	public WaterFlow(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 		if (!bPlayer.canBendIgnoreBinds(this)) {
 			return;
 		}

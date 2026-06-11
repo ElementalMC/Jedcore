@@ -81,6 +81,9 @@ public class WaterGimbal extends WaterAbility implements AddonAbility, ComboAbil
 
 	public WaterGimbal(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 		if (!bPlayer.canBendIgnoreBinds(this)) {
 			return;
 		}

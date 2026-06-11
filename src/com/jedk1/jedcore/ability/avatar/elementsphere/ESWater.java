@@ -40,6 +40,9 @@ public class ESWater extends AvatarAbility implements AddonAbility {
 
 	public ESWater(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!hasAbility(player, ElementSphere.class)) {
 			return;

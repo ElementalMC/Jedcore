@@ -45,6 +45,9 @@ public class SonicBlast extends AirAbility implements AddonAbility {
 
 	public SonicBlast(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (hasAbility(player, SonicBlast.class) || bPlayer.isOnCooldown(this)) {
 			return;

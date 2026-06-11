@@ -42,6 +42,9 @@ public class SpiritBeam extends AvatarAbility implements AddonAbility {
 
 	public SpiritBeam(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (bPlayer.isOnCooldown(this)) return;
 

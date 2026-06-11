@@ -49,6 +49,9 @@ public class IceClaws extends IceAbility implements AddonAbility {
 
 	public IceClaws(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 		if (!bPlayer.canBend(this) || !bPlayer.canIcebend()) {
 			return;
 		}

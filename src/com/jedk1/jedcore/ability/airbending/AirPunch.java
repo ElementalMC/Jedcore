@@ -42,6 +42,9 @@ public class AirPunch extends AirAbility implements AddonAbility {
 
 	public AirPunch(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!bPlayer.canBend(this)) {
 			return;

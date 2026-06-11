@@ -46,6 +46,9 @@ public class ESFire extends AvatarAbility implements AddonAbility {
 
 	public ESFire(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!hasAbility(player, ElementSphere.class)) {
 			return;

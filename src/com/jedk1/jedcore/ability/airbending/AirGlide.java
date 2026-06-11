@@ -33,6 +33,9 @@ public class AirGlide extends AirAbility implements AddonAbility {
 
 	public AirGlide(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (hasAbility(player, AirGlide.class)) {
 			AirGlide ag = getAbility(player, AirGlide.class);

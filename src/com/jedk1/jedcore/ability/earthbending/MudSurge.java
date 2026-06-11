@@ -109,6 +109,9 @@ public class MudSurge extends EarthAbility implements AddonAbility {
 
 	public MudSurge(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!bPlayer.canBend(this)) {
 			return;

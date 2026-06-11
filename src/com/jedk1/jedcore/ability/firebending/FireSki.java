@@ -38,6 +38,9 @@ public class FireSki extends FireAbility implements AddonAbility {
 
 	public FireSki(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 		if (!isEnabled()) {
 			return;
 		}

@@ -44,6 +44,9 @@ public class MagnetShield extends MetalAbility implements AddonAbility {
 
 	public MagnetShield(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!bPlayer.canBendIgnoreCooldowns(this) || !bPlayer.canMetalbend()) {
 			return;

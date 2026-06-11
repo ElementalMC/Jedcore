@@ -35,6 +35,9 @@ public class FirePunch extends FireAbility implements AddonAbility {
 	
 	public FirePunch(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!bPlayer.canBend(this) || hasAbility(player, this.getClass()))
 			return;

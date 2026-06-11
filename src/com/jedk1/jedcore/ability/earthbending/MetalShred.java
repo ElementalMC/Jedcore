@@ -49,6 +49,9 @@ public class MetalShred extends MetalAbility implements AddonAbility {
 
 	public MetalShred(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (hasAbility(player, MetalShred.class)) {
 			getAbility(player, MetalShred.class).remove();

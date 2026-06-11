@@ -61,6 +61,9 @@ public class SandBlast extends SandAbility implements AddonAbility {
 
 	public SandBlast(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!bPlayer.canBend(this)) {
 			return;

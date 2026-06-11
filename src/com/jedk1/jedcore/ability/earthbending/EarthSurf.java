@@ -50,6 +50,9 @@ public class EarthSurf extends EarthAbility implements AddonAbility {
 
 	public EarthSurf(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!bPlayer.canBend(this)) {
 			return;

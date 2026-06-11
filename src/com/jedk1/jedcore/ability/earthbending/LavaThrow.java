@@ -57,6 +57,9 @@ public class LavaThrow extends LavaAbility implements AddonAbility {
 
 	public LavaThrow(Player player) {
 		super(player);
+		if (bPlayer == null) {
+			return;
+		}
 
 		if (!bPlayer.canBend(this) || !bPlayer.canLavabend()) {
 			return;
