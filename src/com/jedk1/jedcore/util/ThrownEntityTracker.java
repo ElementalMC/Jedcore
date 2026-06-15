@@ -24,6 +24,7 @@ public class ThrownEntityTracker {
 	private Ability ability;
 
 	public ThrownEntityTracker(Ability ability, Entity e, Player instigator, long delay) {
+		this.ability = ability;
 		entity = e;
 		this.instigator = instigator;
 		fireTime = System.currentTimeMillis();
