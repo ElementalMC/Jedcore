@@ -36,7 +36,7 @@ machine.
 mvn clean package
 ```
 
-Output: `target/JedCore-1.16.1.jar`
+Output: `target/JedCore-2.16.1.jar`
 
 Once ProjectKorra 1.13.2 is published to Maven Central, step 1 will no longer be
 necessary.
