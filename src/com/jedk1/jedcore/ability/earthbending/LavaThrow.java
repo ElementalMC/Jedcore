@@ -12,7 +12,6 @@ import com.projectkorra.projectkorra.command.Commands;
 import com.projectkorra.projectkorra.region.RegionProtection;
 import com.projectkorra.projectkorra.util.DamageHandler;
 
-import com.projectkorra.projectkorra.util.TempBlock;
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -108,6 +107,13 @@ public class LavaThrow extends LavaAbility implements AddonAbility {
 			return;
 		}
 
+		// A temp lava source can revert while selected; let blasts in flight finish first
+		if (!LavaAbility.isLava(selectedSource) && blasts.isEmpty()) {
+			remove();
+			if (shots > 0) bPlayer.addCooldown(this);
+			return;
+		}
+
 		if (blasts.isEmpty() && shots >= shotMax && !isInitialState) {
 			remove();
 			bPlayer.addCooldown(this);
@@ -123,7 +129,8 @@ public class LavaThrow extends LavaAbility implements AddonAbility {
 	private boolean prepare() {
 		Block targetBlock = getTargetLavaBlock(sourceRange);
 
-		if (targetBlock != null && !TempBlock.isTempBlock(targetBlock) && !EarthAbility.getMovedEarth().containsKey(targetBlock)) {
+		// Temp lava from other lava abilities (LavaFlux, LavaFlow...) is a valid source; our own short-lived blast trail is not
+		if (targetBlock != null && !RegenTempBlock.hasBlock(targetBlock) && !EarthAbility.getMovedEarth().containsKey(targetBlock)) {
 			selectedSource = targetBlock;
 			return true;
 		}
@@ -151,7 +158,7 @@ public class LavaThrow extends LavaAbility implements AddonAbility {
 	}
 
 	public void createBlast() {
-		if (selectedSource != null && shots < shotMax) {
+		if (selectedSource != null && shots < shotMax && LavaAbility.isLava(selectedSource)) {
 			isInitialState = false;
 			shots++;
 
