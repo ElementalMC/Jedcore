@@ -349,16 +349,26 @@ public class LightningBurst extends LightningAbility implements AddonAbility {
 				location.getWorld().playSound(location, Sound.ENTITY_BEE_HURT, soundVolume, 0.2f);
 			}
 
+			// Only the released burst hurts or stuns, and never the caster. The charging bolts are cosmetic.
+			if (!doDamage) {
+				return;
+			}
 			for (Entity entity : GeneralMethods.getEntitiesAroundPoint(location, 2)) {
-				if (entity instanceof LivingEntity && entity.getEntityId() != player.getEntityId() && doDamage) {
-					DamageHandler.damageEntity(entity, damage, ability);
+				if (!(entity instanceof LivingEntity) || entity.getEntityId() == player.getEntityId()) {
+					continue;
 				}
-				if (ThreadLocalRandom.current().nextDouble() <= ability.stunChance) {
-					final MovementHandler mh = new MovementHandler((LivingEntity) entity, ability);
-					if (entity instanceof Player && BendingPlayer.getBendingPlayer((Player) entity).isAvatarState())
+				DamageHandler.damageEntity(entity, damage, ability);
+				// Don't stack a new stun on an entity that is already stopped.
+				if (MovementHandler.isStopped(entity) || ThreadLocalRandom.current().nextDouble() > ability.stunChance) {
+					continue;
+				}
+				if (entity instanceof Player) {
+					final BendingPlayer target = BendingPlayer.getBendingPlayer((Player) entity);
+					if (target != null && target.isAvatarState())
 						continue;
-					mh.stopWithDuration((long) ability.stunDuration, Element.LIGHTNING.getColor() + "* Electrocuted *"); // @Todo; make message configurable in core pk
 				}
+				// Stun.Duration is in milliseconds, MovementHandler takes ticks.
+				new MovementHandler((LivingEntity) entity, ability).stopWithDuration((long) ability.stunDuration / 50, Element.LIGHTNING.getColor() + "* Electrocuted *"); // @Todo; make message configurable in core pk
 			}
 		}
 
